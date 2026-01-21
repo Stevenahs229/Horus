@@ -13,6 +13,7 @@ turns them into a structured scope for implementation.
 - React + Vite (client)
 - Express API (server)
 - Tailwind CSS + Framer Motion for modern UI and animations
+- SQLite database with JWT authentication
 
 ## Repository structure
 
@@ -104,6 +105,11 @@ npm run dev
 
 API runs on http://localhost:4000 by default.
 
+Default credentials (dev):
+
+- Admin: admin@neliaxa.com / admin1234
+- Demo: demo@neliaxa.com / demo1234
+
 ### 2) Client
 
 ```bash
@@ -115,3 +121,11 @@ npm run dev
 
 Client runs on http://localhost:5173 and reads the API base from
 VITE_API_URL.
+
+## Available features (current build)
+
+- Auth (register/login + JWT)
+- Multi-page dashboard (overview, portfolio, analytics, settings)
+- Admin area (user list + metrics)
+- Charts via Recharts (allocation + growth)
+- SQLite database for users, positions, and performance snapshots

@@ -8,9 +8,13 @@
     "start": "node src/index.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.6.2",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
