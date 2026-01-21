@@ -8,6 +8,17 @@ receive a return on investment (ROI) of 4% to 7%.
 This README captures the requirements from the provided project brief and
 turns them into a structured scope for implementation.
 
+## Stack (full stack)
+
+- React + Vite (client)
+- Express API (server)
+- Tailwind CSS + Framer Motion for modern UI and animations
+
+## Repository structure
+
+- /client: React front-end
+- /server: Node.js API
+
 ## Core functional requirements
 
 1. Registration and authentication
@@ -79,3 +90,28 @@ turns them into a structured scope for implementation.
 3. Create UI/UX wireframes for MVP screens
 4. Build backlog and milestones from MVP scope
 5. Identify compliance and regulatory constraints
+
+## Local development
+
+### 1) API
+
+```bash
+cd server
+npm install
+cp .env.example .env
+npm run dev
+```
+
+API runs on http://localhost:4000 by default.
+
+### 2) Client
+
+```bash
+cd client
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Client runs on http://localhost:5173 and reads the API base from
+VITE_API_URL.
