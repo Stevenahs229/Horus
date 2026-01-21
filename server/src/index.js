@@ -136,6 +136,45 @@ app.get('/api/health', (req, res) => {
   })
 })
 
+app.get('/', (req, res) => {
+  res.json({
+    name: appName,
+    status: 'online',
+    docs: '/api',
+  })
+})
+
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'NeliAxa API is running.',
+    endpoints: [
+      'GET /api/health',
+      'GET /api/investments',
+      'GET /api/metrics',
+      'POST /api/auth/register',
+      'POST /api/auth/login',
+      'POST /api/auth/2fa/verify',
+      'POST /api/2fa/setup',
+      'POST /api/2fa/confirm',
+      'POST /api/2fa/disable',
+      'GET /api/portfolio',
+      'GET /api/performance',
+      'GET /api/dashboard/summary',
+      'GET /api/wallet',
+      'POST /api/wallet/deposit',
+      'POST /api/wallet/withdraw',
+      'GET /api/admin/investments',
+      'POST /api/admin/investments',
+      'PUT /api/admin/investments/:id',
+      'DELETE /api/admin/investments/:id',
+      'GET /api/admin/users',
+      'PUT /api/admin/users/:id/role',
+      'GET /api/admin/overview',
+      'GET /api/admin/wallets',
+    ],
+  })
+})
+
 app.post('/api/auth/register', (req, res) => {
   const schema = z.object({
     email: z.string().email(),

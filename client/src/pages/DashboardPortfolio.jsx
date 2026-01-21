@@ -64,7 +64,7 @@ const DashboardPortfolio = () => {
       />
 
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="glass p-5">
+        <div className="card">
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
             Total invested
           </p>
@@ -74,7 +74,7 @@ const DashboardPortfolio = () => {
               : currencyFormatter.format(totalInvested)}
           </p>
         </div>
-        <div className="glass p-5">
+        <div className="card">
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
             Active positions
           </p>
@@ -82,7 +82,7 @@ const DashboardPortfolio = () => {
             {status === 'loading' ? '...' : portfolio.length}
           </p>
         </div>
-        <div className="glass p-5">
+        <div className="card">
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
             Average ROI band
           </p>
@@ -105,7 +105,7 @@ const DashboardPortfolio = () => {
 
       <div className="grid gap-4">
         {portfolio.map((item) => (
-          <div key={item.id} className="glass p-6">
+          <div key={item.id} className="card">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <h3 className="text-xl font-semibold text-white">

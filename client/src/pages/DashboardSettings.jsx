@@ -72,7 +72,7 @@ const DashboardSettings = () => {
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Account</h2>
           <p className="mt-2 text-sm text-slate-400">
             Manage your credentials and profile details.
@@ -87,7 +87,7 @@ const DashboardSettings = () => {
           </div>
         </div>
 
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Preferences</h2>
           <div className="mt-4 grid gap-4 text-sm text-slate-300">
             <label className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/40 px-4 py-3">

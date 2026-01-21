@@ -94,18 +94,28 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <div className="absolute inset-0 -z-10 bg-grid opacity-20" />
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-cyan-400 to-indigo-500" />
           <span className="text-lg font-semibold tracking-wide">NeliAxa</span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-slate-300">
-            Full stack
-          </span>
+          <span className="pill">Full stack</span>
           <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs text-emerald-200">
             API {apiStatus}
           </span>
+          <Link
+            to="/login"
+            className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold text-white/80"
+          >
+            Sign in
+          </Link>
+          <Link
+            to="/register"
+            className="rounded-full bg-cyan-500 px-4 py-2 text-xs font-semibold text-slate-900"
+          >
+            Get started
+          </Link>
         </div>
       </header>
 
@@ -127,7 +137,7 @@ const Home = () => {
               variants={fadeUp}
               className="text-4xl font-semibold leading-tight text-white md:text-5xl"
             >
-              Modern, animated, and data-driven investing with{' '}
+              Your premium investment cockpit with{' '}
               <span className="gradient-text">4% to 7% ROI</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-lg text-slate-300">
@@ -151,6 +161,9 @@ const Home = () => {
               >
                 View the demo
               </Link>
+              <span className="text-xs text-slate-400">
+                Trusted by fintech founders and private investors
+              </span>
             </motion.div>
             <motion.div
               variants={fadeUp}
@@ -176,7 +189,7 @@ const Home = () => {
                     : '1.9k',
                 },
               ].map((item) => (
-                <div key={item.label} className="glass px-4 py-4">
+                <div key={item.label} className="card">
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
                     {item.label}
                   </p>
@@ -188,7 +201,7 @@ const Home = () => {
             </motion.div>
           </div>
 
-          <motion.div variants={fadeUp} className="glass flex flex-col gap-6 p-6">
+          <motion.div variants={fadeUp} className="card flex flex-col gap-6">
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-slate-400">
                 Live ROI calculator
@@ -238,7 +251,7 @@ const Home = () => {
             <div className="flex flex-col gap-3">
               <button
                 onClick={handleCalculate}
-                className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-900"
+                className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5"
               >
                 {roiState === 'loading' ? 'Calculating...' : 'Calculate ROI'}
               </button>
@@ -300,7 +313,7 @@ const Home = () => {
                 key={item.id}
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
-                className="glass p-6 transition"
+                className="card transition"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -332,7 +345,7 @@ const Home = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="glass grid gap-6 p-8"
+          className="card grid gap-6"
         >
           <motion.div variants={fadeUp}>
             <p className="text-sm uppercase tracking-[0.3em] text-slate-400">

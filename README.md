@@ -122,6 +122,11 @@ npm run dev
 Client runs on http://localhost:5173 and reads the API base from
 VITE_API_URL.
 
+Quick API check:
+
+- http://localhost:4000/ (API status)
+- http://localhost:4000/api/health
+
 ## Available features (current build)
 
 - Auth (register/login + JWT + optional 2FA)

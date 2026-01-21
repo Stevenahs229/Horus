@@ -7,7 +7,7 @@ const DashboardLayout = () => {
       <div className="absolute inset-0 -z-10 bg-grid opacity-10" />
       <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 lg:grid-cols-[260px_1fr]">
         <Sidebar />
-        <main className="px-6 py-10 lg:px-8">
+        <main className="px-6 py-10 lg:px-10">
           <Outlet />
         </main>
       </div>

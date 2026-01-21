@@ -5,7 +5,7 @@ import { canAccessAdmin } from '../lib/permissions'
 const navLinkClass = ({ isActive }) =>
   `flex items-center justify-between rounded-xl px-4 py-3 text-sm transition ${
     isActive
-      ? 'bg-white/10 text-white'
+      ? 'bg-white/10 text-white shadow-lg shadow-black/20'
       : 'text-slate-300 hover:bg-white/5 hover:text-white'
   }`
 
@@ -13,8 +13,8 @@ const Sidebar = () => {
   const { user } = useAuth()
 
   return (
-    <aside className="flex h-full flex-col gap-6 border-r border-white/10 bg-slate-950/60 px-5 py-8">
-      <div>
+    <aside className="flex h-full flex-col gap-6 border-r border-white/10 bg-slate-950/70 px-5 py-8 backdrop-blur">
+      <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
         <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
           NeliAxa
         </p>
