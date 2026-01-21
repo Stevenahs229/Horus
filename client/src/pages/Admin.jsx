@@ -205,7 +205,7 @@ const Admin = () => {
       />
 
       {message && (
-        <div className="glass px-4 py-3">
+        <div className="card px-4 py-3">
           <p className={`text-sm ${messageClass}`}>{message}</p>
         </div>
       )}
@@ -226,7 +226,7 @@ const Admin = () => {
               value: overview?.metrics?.alertsTriggered ?? '...',
             },
           ].map((item) => (
-            <div key={item.label} className="glass p-5">
+            <div key={item.label} className="card">
               <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
                 {item.label}
               </p>
@@ -239,7 +239,7 @@ const Admin = () => {
       )}
 
       {canReadUsers && (
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Users</h2>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-300">
@@ -289,7 +289,7 @@ const Admin = () => {
       )}
 
       {canReadInvestments && (
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Investments</h2>
           {canWriteInvestments && (
             <div className="mt-4 grid gap-3 text-sm text-slate-300 md:grid-cols-3">
@@ -399,7 +399,10 @@ const Admin = () => {
           )}
           <div className="mt-6 space-y-4">
             {investments.map((investment) => (
-              <div key={investment.id} className="rounded-2xl border border-white/10 bg-slate-900/40 p-4">
+              <div
+                key={investment.id}
+                className="rounded-2xl border border-white/10 bg-slate-900/40 p-4"
+              >
                 {editId === investment.id ? (
                   <div className="grid gap-3 text-sm text-slate-300 md:grid-cols-3">
                     <input
@@ -550,7 +553,7 @@ const Admin = () => {
       )}
 
       {canReadWallets && (
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Wallets</h2>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-300">

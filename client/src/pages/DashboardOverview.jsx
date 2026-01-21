@@ -87,7 +87,7 @@ const DashboardOverview = () => {
             value: summary ? summary.positions : '...'
           },
         ].map((item) => (
-          <div key={item.label} className="glass p-5">
+          <div key={item.label} className="card">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
               {item.label}
             </p>
@@ -96,7 +96,7 @@ const DashboardOverview = () => {
         ))}
       </div>
 
-      <div className="glass grid gap-6 p-6">
+      <div className="card grid gap-6">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
             Performance

@@ -93,7 +93,7 @@ const DashboardWallet = () => {
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-        <div className="glass p-6">
+        <div className="card">
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
             Balance
           </p>
@@ -121,7 +121,7 @@ const DashboardWallet = () => {
           )}
         </div>
 
-        <div className="glass grid gap-6 p-6">
+        <div className="card grid gap-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
               Add funds
@@ -183,7 +183,7 @@ const DashboardWallet = () => {
         </div>
       </div>
 
-      <div className="glass p-6">
+      <div className="card">
         <h2 className="text-lg font-semibold text-white">Recent transactions</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-left text-sm text-slate-300">

@@ -76,7 +76,7 @@ const DashboardAnalytics = () => {
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">
             Allocation by category
           </h2>
@@ -106,7 +106,7 @@ const DashboardAnalytics = () => {
           </div>
         </div>
 
-        <div className="glass p-6">
+        <div className="card">
           <h2 className="text-lg font-semibold text-white">Monthly growth</h2>
           <p className="mt-1 text-sm text-slate-400">
             ROI progression based on portfolio snapshots.
