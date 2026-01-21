@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+.git
+.github
+**/node_modules
+**/dist
+**/.cache
+**/.DS_Store

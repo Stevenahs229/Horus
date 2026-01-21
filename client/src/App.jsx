@@ -6,6 +6,7 @@ import DashboardLayout from './pages/DashboardLayout'
 import DashboardOverview from './pages/DashboardOverview'
 import DashboardPortfolio from './pages/DashboardPortfolio'
 import DashboardSettings from './pages/DashboardSettings'
+import DashboardWallet from './pages/DashboardWallet'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
@@ -28,12 +29,13 @@ function App() {
         <Route index element={<DashboardOverview />} />
         <Route path="portfolio" element={<DashboardPortfolio />} />
         <Route path="analytics" element={<DashboardAnalytics />} />
+        <Route path="wallet" element={<DashboardWallet />} />
         <Route path="settings" element={<DashboardSettings />} />
       </Route>
       <Route
         path="/admin"
         element={
-          <ProtectedRoute requireAdmin>
+          <ProtectedRoute allowedRoles={['admin', 'manager', 'support']}>
             <DashboardLayout />
           </ProtectedRoute>
         }

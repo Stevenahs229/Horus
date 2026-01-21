@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { hasPermission } from '../lib/permissions'
 
 const LoadingGate = () => (
   <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-200">
@@ -7,7 +8,11 @@ const LoadingGate = () => (
   </div>
 )
 
-const ProtectedRoute = ({ children, requireAdmin = false }) => {
+const ProtectedRoute = ({
+  children,
+  allowedRoles,
+  requiredPermission,
+}) => {
   const { user, loading } = useAuth()
 
   if (loading) {
@@ -18,7 +23,11 @@ const ProtectedRoute = ({ children, requireAdmin = false }) => {
     return <Navigate to="/login" replace />
   }
 
-  if (requireAdmin && user.role !== 'admin') {
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/dashboard" replace />
+  }
+
+  if (requiredPermission && !hasPermission(user.role, requiredPermission)) {
     return <Navigate to="/dashboard" replace />
   }
 

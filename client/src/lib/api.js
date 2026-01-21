@@ -11,17 +11,18 @@ const setToken = (token) => {
 }
 
 const request = async (path, options = {}) => {
+  const { authToken, ...fetchOptions } = options
   const headers = {
-    ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-    ...(options.headers || {}),
+    ...(fetchOptions.body ? { 'Content-Type': 'application/json' } : {}),
+    ...(fetchOptions.headers || {}),
   }
-  const token = getToken()
+  const token = authToken || getToken()
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
 
   const response = await fetch(`${API_BASE}${path}`, {
-    ...options,
+    ...fetchOptions,
     headers,
   })
 
@@ -55,10 +56,59 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
+  verifyTwoFactor: (payload, tempToken) =>
+    request('/api/auth/2fa/verify', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      authToken: tempToken,
+    }),
   me: () => request('/api/auth/me'),
+  setupTwoFactor: () => request('/api/2fa/setup', { method: 'POST' }),
+  confirmTwoFactor: (payload) =>
+    request('/api/2fa/confirm', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  disableTwoFactor: (payload) =>
+    request('/api/2fa/disable', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
   summary: () => request('/api/dashboard/summary'),
   portfolio: () => request('/api/portfolio'),
   performance: () => request('/api/performance'),
+  wallet: () => request('/api/wallet'),
+  walletDeposit: (payload) =>
+    request('/api/wallet/deposit', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  walletWithdraw: (payload) =>
+    request('/api/wallet/withdraw', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
   adminUsers: () => request('/api/admin/users'),
   adminOverview: () => request('/api/admin/overview'),
+  adminUpdateRole: (id, payload) =>
+    request(`/api/admin/users/${id}/role`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+  adminInvestments: () => request('/api/admin/investments'),
+  adminCreateInvestment: (payload) =>
+    request('/api/admin/investments', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+  adminUpdateInvestment: (id, payload) =>
+    request(`/api/admin/investments/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+  adminDeleteInvestment: (id) =>
+    request(`/api/admin/investments/${id}`, {
+      method: 'DELETE',
+    }),
+  adminWallets: () => request('/api/admin/wallets'),
 }

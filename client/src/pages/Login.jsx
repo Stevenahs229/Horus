@@ -5,8 +5,10 @@ import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
   const navigate = useNavigate()
-  const { signIn } = useAuth()
+  const { signIn, verifyTwoFactor, pendingTwoFactor } = useAuth()
   const [form, setForm] = useState({ email: '', password: '' })
+  const [twoFactorCode, setTwoFactorCode] = useState('')
+  const [step, setStep] = useState('credentials')
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
 
@@ -19,10 +21,25 @@ const Login = () => {
     setStatus('loading')
     setError('')
     try {
-      await signIn(form.email, form.password)
+      if (step === 'credentials') {
+        const result = await signIn(form.email, form.password)
+        if (result.requires2fa) {
+          setStep('twoFactor')
+          setStatus('idle')
+          return
+        }
+        navigate('/dashboard')
+        return
+      }
+
+      await verifyTwoFactor(twoFactorCode)
       navigate('/dashboard')
     } catch (err) {
-      setError('Invalid credentials. Try the demo account.')
+      setError(
+        step === 'twoFactor'
+          ? 'Invalid verification code. Try again.'
+          : 'Invalid credentials. Try the demo account.'
+      )
       setStatus('idle')
     }
   }
@@ -48,34 +65,60 @@ const Login = () => {
             </p>
           </div>
           <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
-            <label className="grid gap-2 text-sm text-slate-300">
-              Email
-              <input
-                type="email"
-                value={form.email}
-                onChange={handleChange('email')}
-                required
-                className="rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white"
-              />
-            </label>
-            <label className="grid gap-2 text-sm text-slate-300">
-              Password
-              <input
-                type="password"
-                value={form.password}
-                onChange={handleChange('password')}
-                required
-                className="rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white"
-              />
-            </label>
+            {step === 'credentials' && (
+              <>
+                <label className="grid gap-2 text-sm text-slate-300">
+                  Email
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange('email')}
+                    required
+                    className="rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white"
+                  />
+                </label>
+                <label className="grid gap-2 text-sm text-slate-300">
+                  Password
+                  <input
+                    type="password"
+                    value={form.password}
+                    onChange={handleChange('password')}
+                    required
+                    className="rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white"
+                  />
+                </label>
+              </>
+            )}
+            {step === 'twoFactor' && (
+              <label className="grid gap-2 text-sm text-slate-300">
+                Two-factor code
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={twoFactorCode}
+                  onChange={(event) => setTwoFactorCode(event.target.value)}
+                  required
+                  className="rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white"
+                />
+              </label>
+            )}
             {error && <p className="text-sm text-rose-200">{error}</p>}
             <button
               type="submit"
               className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-900"
               disabled={status === 'loading'}
             >
-              {status === 'loading' ? 'Signing in...' : 'Sign in'}
+              {status === 'loading'
+                ? 'Signing in...'
+                : step === 'twoFactor'
+                  ? 'Verify code'
+                  : 'Sign in'}
             </button>
+            {pendingTwoFactor && step === 'credentials' && (
+              <p className="text-xs text-slate-400">
+                Two-factor verification is required for this account.
+              </p>
+            )}
           </form>
           <p className="mt-6 text-sm text-slate-400">
             No account yet?{' '}

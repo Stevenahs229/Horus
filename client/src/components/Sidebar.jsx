@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { canAccessAdmin } from '../lib/permissions'
 
 const navLinkClass = ({ isActive }) =>
   `flex items-center justify-between rounded-xl px-4 py-3 text-sm transition ${
@@ -31,10 +32,13 @@ const Sidebar = () => {
         <NavLink to="/dashboard/analytics" className={navLinkClass}>
           Analytics
         </NavLink>
+        <NavLink to="/dashboard/wallet" className={navLinkClass}>
+          Wallet
+        </NavLink>
         <NavLink to="/dashboard/settings" className={navLinkClass}>
           Settings
         </NavLink>
-        {user?.role === 'admin' && (
+        {canAccessAdmin(user?.role) && (
           <NavLink to="/admin" className={navLinkClass}>
             Admin
           </NavLink>

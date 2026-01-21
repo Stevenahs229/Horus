@@ -124,8 +124,37 @@ VITE_API_URL.
 
 ## Available features (current build)
 
-- Auth (register/login + JWT)
-- Multi-page dashboard (overview, portfolio, analytics, settings)
-- Admin area (user list + metrics)
+- Auth (register/login + JWT + optional 2FA)
+- Multi-page dashboard (overview, portfolio, analytics, wallet, settings)
+- Admin area (user list, roles, investment CRUD, wallet overview)
 - Charts via Recharts (allocation + growth)
 - SQLite database for users, positions, and performance snapshots
+- Simulated wallet with deposit/withdraw flows
+
+## Roles and permissions
+
+- admin: full access
+- manager: investments + metrics + read users + wallets
+- support: read users + wallets
+- user: standard dashboard access
+
+> Note: role changes apply on next login (JWT is role-based).
+
+## Two-factor authentication (2FA)
+
+1. Login, then open **Settings**.
+2. Click **Enable 2FA**, scan the QR code.
+3. Enter the 6-digit code to confirm.
+
+## Docker (optional)
+
+```bash
+docker compose up --build
+```
+
+- Client: http://localhost:4173
+- API: http://localhost:4000
+
+## CI
+
+GitHub Actions runs a minimal build for client and server packages.
